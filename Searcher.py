@@ -2,10 +2,11 @@
 # author: Не знаю, чья идея. Если есть претензии ко мне — канал из meta developer к вашим услугам.
 
 from .. import loader, utils
+from telethon import Button
 
-class SearchLinksMod(loader.Module):
+class SearcherMod(loader.Module):
     """Модуль для поиска в различных поисковых системах"""
-    strings = {"name": "SearchLinks"}
+    strings = {"name": "Searcher"}
 
     async def searchcmd(self, message):
         """Поиск по запросу в различных системах"""
@@ -25,11 +26,7 @@ class SearchLinksMod(loader.Module):
         }
 
         buttons = [
-            [{"text": name, "url": url}] for name, url in search_engines.items()
+            [Button.url(name, url)] for name, url in search_engines.items()
         ]
 
-        await self.inline.form(
-            message=message,
-            text=f"🔍 Links for your request: <code>{utils.escape_html(query)}</code>",
-            reply_markup=buttons
-        )
+        await message.reply(f"🔍 Links for your request: <code>{utils.escape_html(query)}</code>", buttons=buttons)
