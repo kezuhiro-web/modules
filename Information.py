@@ -3,11 +3,11 @@
 from .. import loader, utils
 from telethon import types
 
-class Information(loader.Module):
+class InformationMod(loader.Module):
     """Модуль для получения информации о пользователе или чате"""
     strings = {"name": "Information"}
 
-    async def ainfo(self, message):
+    async def ainfocmd(self, message):
         """Получить информацию о пользователе или чате"""
         if message.is_reply:
             user = await message.get_reply_message()
