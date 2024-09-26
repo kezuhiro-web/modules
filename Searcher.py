@@ -26,7 +26,7 @@ class SearcherMod(loader.Module):
         }
 
         buttons = [
-            [Button.url(name, url)] for name, url in search_engines.items()
+            Button.url(name, url) for name, url in search_engines.items()
         ]
 
-        await message.reply(f"🔍 Links for your request: <code>{utils.escape_html(query)}</code>", buttons=buttons)
+        await message.reply(f"🔍 Links for your request: <code>{utils.escape_html(query)}</code>", buttons=[buttons])
