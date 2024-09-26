@@ -23,7 +23,7 @@ class InformationMod(loader.Module):
                 await utils.answer(message, f"Ошибка: {str(e)}")
                 return
 
-        if isinstance(target, (types.User, types.Bot)):
+        if isinstance(target, types.User):
             name = target.first_name or ""
             last_name = target.last_name or ""
             username = target.username or "None"
