@@ -3,9 +3,9 @@
 
 from .. import loader, utils
 
-class SearcherMod(loader.Module):
+class SearchLinksMod(loader.Module):
     """Модуль для поиска в различных поисковых системах"""
-    strings = {"name": "Searcher"}
+    strings = {"name": "SearchLinks"}
 
     async def searchcmd(self, message):
         """Поиск по запросу в различных системах"""
@@ -25,7 +25,7 @@ class SearcherMod(loader.Module):
         }
 
         buttons = [
-            [utils.inline.url(name, url)] for name, url in search_engines.items()
+            [{"text": name, "url": url}] for name, url in search_engines.items()
         ]
 
         await self.inline.form(
