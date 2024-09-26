@@ -2,4 +2,3 @@ GoogleSearcher
 VideoToMP3
 Brainfuck
 Searcher
-Information
