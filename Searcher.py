@@ -2,7 +2,6 @@
 # author: Не знаю, чья идея. Если есть претензии ко мне — канал из meta developer к вашим услугам.
 
 from .. import loader, utils
-from telethon import Button
 
 class SearcherMod(loader.Module):
     """Модуль для поиска в различных поисковых системах"""
@@ -12,7 +11,7 @@ class SearcherMod(loader.Module):
         """Поиск по запросу в различных системах"""
         query = utils.get_args_raw(message) or (await message.get_reply_message()).raw_text
         if not query:
-            await utils.answer(message, "Нужно указать запрос или ответить на сообщение.")
+            await message.edit("Нужно указать запрос или ответить на сообщение.")
             return
 
         query_encoded = utils.escape_html(query).replace(' ', '+')
@@ -25,8 +24,11 @@ class SearcherMod(loader.Module):
             "Yandex": f"https://yandex.com/search/?text={query_encoded}"
         }
 
-        buttons = [
-            Button.url(name, url) for name, url in search_engines.items()
-        ]
+        # Формируем список ссылок
+        links = "\n".join([f"{name}: <a href='{url}'>Link</a>" for name, url in search_engines.items()])
 
-        await message.reply(f"🔍 Links for your request: <code>{utils.escape_html(query)}</code>", buttons=[buttons])
+        # Формируем итоговое сообщение с HTML-тегами
+        result_message = f"🔍 <b>Links for your request:</b> {utils.escape_html(query)}\n{links}"
+
+        # Редактируем исходное сообщение
+        await message.edit(result_message, parse_mode="html")
