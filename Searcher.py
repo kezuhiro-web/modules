@@ -24,11 +24,8 @@ class SearcherMod(loader.Module):
             "Yandex": f"https://yandex.com/search/?text={query_encoded}"
         }
 
-        # Формируем список ссылок
         links = "\n".join([f"{name}: <a href='{url}'>Link</a>" for name, url in search_engines.items()])
 
-        # Формируем итоговое сообщение с HTML-тегами
         result_message = f"🔍 <b>Links for your request:</b> {utils.escape_html(query)}\n{links}"
 
-        # Редактируем исходное сообщение
         await message.edit(result_message, parse_mode="html")
