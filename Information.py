@@ -23,7 +23,7 @@ class InformationMod(loader.Module):
                 await utils.answer(message, f"Ошибка: {str(e)}")
                 return
 
-        if isinstance(target, types.User):
+        if isinstance(target, (types.User, types.Bot)):
             name = target.first_name or ""
             last_name = target.last_name or ""
             username = target.username or "None"
@@ -66,6 +66,6 @@ class InformationMod(loader.Module):
 
     async def get_common_groups(self, user):
         """Получить общее количество групп, в которых состоит пользователь"""
-        common_chats = await self.client.get_participants('user', limit=100)
+        common_chats = await self.client.get_dialogs()
         common_groups = [chat.title for chat in common_chats if chat.is_group and chat.id in user.participation]
         return ", ".join(common_groups) if common_groups else "Нет общих групп."
