@@ -8,17 +8,19 @@ class InformationMod(loader.Module):
     strings = {"name": "Information"}
 
     async def ainfocmd(self, message):
-        """Получить информацию о пользователе или чате"""
         if message.is_reply:
-            user = await message.get_reply_message()
-            target = user.from_id
+            reply = await message.get_reply_message()
+            target = reply.sender_id
         else:
             args = utils.get_args_raw(message)
             if not args:
                 await utils.answer(message, "Укажите username или ID пользователя.")
                 return
             try:
-                target = await self.client.get_entity(args)
+                if args.isdigit():
+                    target = await self.client.get_entity(types.PeerUser(int(args)))
+                else:
+                    target = await self.client.get_entity(args)
             except Exception as e:
                 await utils.answer(message, f"Ошибка: {str(e)}")
                 return
@@ -43,7 +45,7 @@ class InformationMod(loader.Module):
                     parse_mode="html"
                 )
             else:
-                await utils.answer(message, result_message)
+                await message.edit(result_message, parse_mode="html")
 
         elif isinstance(target, types.Chat):
             chat_name = target.title
@@ -62,10 +64,9 @@ class InformationMod(loader.Module):
                     parse_mode="html"
                 )
             else:
-                await utils.answer(message, result_message)
+                await message.edit(result_message, parse_mode="html")
 
     async def get_common_groups(self, user):
-        """Получить общее количество групп, в которых состоит пользователь"""
         common_chats = await self.client.get_dialogs()
         common_groups = [chat.title for chat in common_chats if chat.is_group and chat.id in user.participation]
         return ", ".join(common_groups) if common_groups else "Нет общих групп."
