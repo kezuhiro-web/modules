@@ -29,33 +29,35 @@ class InformationMod(loader.Module):
             username = target.username or "None"
             user_id = target.id
             about = getattr(target, 'about', "None")
-            avatar = target.photo.large if target.photo else None
+            avatar = target.photo
             common_groups = await self.get_common_groups(target)
 
             result_message = f"<b>Name:</b> {name} {last_name}\n<b>Username:</b> {username}\n<b>ID:</b> {user_id}\n<b>Bio:</b> {about}\n<b>Common groups:</b> {common_groups}"
 
             if avatar:
+                avatar_url = await self.client.download_profile_photo(avatar, bytes=True)
                 await message.client.send_file(
                     message.chat_id,
-                    avatar,
+                    avatar_url,
                     caption=result_message,
                     parse_mode="html"
                 )
             else:
                 await utils.answer(message, result_message)
-        
+
         elif isinstance(target, types.Chat):
             chat_name = target.title
             chat_id = target.id
             chat_link = f"<a href='tg://chat?id={chat_id}'>Link</a>"
-            avatar = target.photo.large if target.photo else None
+            avatar = target.photo
 
             result_message = f"<b>Chat Name:</b> {chat_name}\n<b>ID:</b> {chat_id}\n<b>Link:</b> {chat_link}"
 
             if avatar:
+                avatar_url = await self.client.download_profile_photo(avatar, bytes=True)
                 await message.client.send_file(
                     message.chat_id,
-                    avatar,
+                    avatar_url,
                     caption=result_message,
                     parse_mode="html"
                 )
