@@ -4,13 +4,13 @@
 from .. import loader, utils
 import telethon
 
-class CryptoWalletMod(loader.Module):
-    """Модуль для взаимодействия с @cryptobot"""
-    strings = {'name': 'CryptoWallet'}
+class WalletCheckMod(loader.Module):
+    """Модуль для взаимодействия с @send"""
+    strings = {'name': 'WalletCheck'}
 
     async def walletcmd(self, message: telethon.tl.types.Message):
-        """Отправляет команду /wallet в @cryptobot, удаляет её и меняет сообщение команды"""
-        bot_username = "@CryptoBot"
+        """Отправляет команду /wallet в @send"""
+        bot_username = "@send"
 
         async with message.client.conversation(bot_username) as conv:
             sent_message = await conv.send_message("/wallet")
