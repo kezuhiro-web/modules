@@ -5,5 +5,4 @@ Searcher
 VideoDownloader
 WalletCheck
 LinkShortener
-UserInfo
 Neofetch
