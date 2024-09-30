@@ -6,3 +6,4 @@ VideoDownloader
 WalletCheck
 LinkShortener
 Neofetch
+SimpleSpeedtest
