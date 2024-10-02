@@ -14,7 +14,7 @@ class GoogleSearcherMod(loader.Module):
     async def googlecmd(self, message):
         """ <args> — Create link for your request"""
         
-        args = utils.get_args_raw()
+        args = utils.get_args_raw(message)
         
         if not args:
             await utils.answer(message, "<b>❌ No args</b>")
