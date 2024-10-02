@@ -1,5 +1,5 @@
-# meta developer: @shiningwhore
-# author: Не знаю, чья идея. Если есть претензии ко мне — канал из meta developer к вашим услугам.
+# meta developer: @htmIpage
+# author: Не знаю, чья идея. Если есть претензии ко мне — профиль из meta developer к вашим услугам.
 
 import requests
 from .. import loader, utils
@@ -21,19 +21,19 @@ class LinkShortenerMod(loader.Module):
             args = reply_message.raw_text
         
         if not args:
-            await message.edit("<b>Пожалуйста, укажите ссылку для сокращения или ответьте на сообщение с ссылкой.</b>")
+            await utils.answer(message, "<b>Пожалуйста, укажите ссылку для сокращения или ответьте на сообщение с ссылкой.</b>")
             return
         
         if not args.startswith("http"):
-            await message.edit("<b>Неверная ссылка. Она должна начинаться с http или https.</b>")
+            await utils.asnwer(message, "<b>Неверная ссылка. Она должна начинаться с http или https.</b>")
             return
 
         try:
             response = requests.get(f"http://tinyurl.com/api-create.php?url={args}")
             if response.status_code == 200:
                 short_url = response.text
-                await message.edit(f"<b>Сокращенная ссылка:</b> {short_url}")
+                await utils.answer(message, f"<b>Сокращенная ссылка:</b> {short_url}")
             else:
-                await message.edit("<b>Ошибка при сокращении ссылки.</b>")
+                await utils.answer(message, "<b>Ошибка при сокращении ссылки.</b>")
         except Exception as e:
-            await message.edit(f"<b>Произошла ошибка:</b> {str(e)}")
+            await utils.answer(message, f"<b>Произошла ошибка:</b> {str(e)}")
