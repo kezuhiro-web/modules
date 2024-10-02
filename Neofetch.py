@@ -1,4 +1,4 @@
-# meta developer: @shiningwhore
+# meta developer: @htmIpage
 
 import subprocess
 import traceback
@@ -15,9 +15,9 @@ class NeofetchMod(loader.Module):
             output = result.stdout
 
             if result.returncode != 0:
-                await message.edit(f"<b>Ошибка выполнения команды neofetch:</b>\n{result.stderr}")
+                await utils.answer(message, f"<b>Ошибка выполнения команды neofetch:</b>\n{result.stderr}")
                 return
 
-            await message.edit(f"<pre>{utils.escape_html(output)}</pre>")
+            await utils.answer(message, f"<pre>{utils.escape_html(output)}</pre>")
         except Exception:
-            await message.edit(f"<b>Ошибка:</b>\n<pre>{traceback.format_exc()}</pre>")
+            await utils.answer(message, f"<b>Ошибка:</b>\n<pre>{traceback.format_exc()}</pre>")
