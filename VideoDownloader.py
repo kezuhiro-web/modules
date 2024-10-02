@@ -1,7 +1,7 @@
 # 🔒    Licensed under the GNU AGPLv3
 # 🌐 https://www.gnu.org/licenses/agpl-3.0.html
 
-# meta developer: @hikka_mods, @shiningwhore
+# meta developer: @hikka_mods, @htmIpage
 
 from .. import loader, utils
 import os
@@ -19,10 +19,10 @@ class VideoDownloaderMod(loader.Module):
         args = utils.get_args_raw(message)
 
         if not args:
-            await message.edit("<b>Пожалуйста, укажите ссылку на видео с YouTube!</b>")
+            await utils.answer(message, "<b>Пожалуйста, укажите ссылку на видео с YouTube!</b>")
             return
 
-        await message.edit("<b>Начинаю загрузку видео с YouTube...</b>")
+        await utils.answer(message, "<b>Начинаю загрузку видео с YouTube...</b>")
         await self.download_video(args, message, "youtube")
 
     async def ttdlcmd(self, message):
@@ -30,10 +30,10 @@ class VideoDownloaderMod(loader.Module):
         args = utils.get_args_raw(message)
 
         if not args:
-            await message.edit("<b>Пожалуйста, укажите ссылку на видео из TikTok!</b>")
+            await utils.answer(message, "<b>Пожалуйста, укажите ссылку на видео из TikTok!</b>")
             return
 
-        await message.edit("<b>Начинаю загрузку видео из TikTok...</b>")
+        await utils.answer(message, "<b>Начинаю загрузку видео из TikTok...</b>")
         await self.download_video(args, message, "tiktok")
 
     async def download_video(self, url, message, platform):
@@ -54,4 +54,4 @@ class VideoDownloaderMod(loader.Module):
           
             os.remove(video_title)
         except Exception as e:
-            await message.edit(f"<b>Ошибка загрузки видео:</b> {e}")
+            await utils.answer(message, f"<b>Ошибка загрузки видео:</b> {e}")
