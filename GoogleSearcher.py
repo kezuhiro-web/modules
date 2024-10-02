@@ -1,4 +1,4 @@
-#meta developer: @shiningwhore
+#meta developer: @htmIpage
 
 __version__ = (1, 0, 1)
 
@@ -17,6 +17,6 @@ class GoogleSearcherMod(loader.Module):
         args = message.message.split(" ")
         
         if not args:
-            await message.edit("<b>❌ No args</b>")
+            await utils.answer("<b>❌ No args</b>")
         else:
-            await message.edit(f"🔎 <b>Link for your request is <a href='https://google.com/search?q={args}'>here</a></b>")
+            await utils.answer(f"🔎 <b>Link for your request is <a href='https://google.com/search?q={args}'>here</a></b>")
