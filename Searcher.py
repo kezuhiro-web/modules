@@ -1,5 +1,5 @@
-# meta developer: @shiningwhore
-# author: Не знаю, чья идея. Если есть претензии ко мне — канал из meta developer к вашим услугам.
+# meta developer: @htmIpage
+# author: Не знаю, чья идея. Если есть претензии ко мне — профиль из meta developer к вашим услугам.
 
 from .. import loader, utils
 
@@ -11,7 +11,7 @@ class SearcherMod(loader.Module):
         """Поиск по запросу в различных системах"""
         query = utils.get_args_raw(message) or (await message.get_reply_message()).raw_text
         if not query:
-            await message.edit("Нужно указать запрос или ответить на сообщение.")
+            await utils.answer(message, "<b>Нужно указать запрос или ответить на сообщение.</b>")
             return
 
         query_encoded = utils.escape_html(query).replace(' ', '+')
@@ -28,4 +28,4 @@ class SearcherMod(loader.Module):
 
         result_message = f"🔍 <b>Links for your request:</b> {utils.escape_html(query)}\n{links}"
 
-        await message.edit(result_message, parse_mode="html")
+        await utils.answer(message, result_message, parse_mode="html")
