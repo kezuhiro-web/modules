@@ -1,4 +1,4 @@
-# meta developer: @shiningwhore
+# meta developer: @htmIpage
 
 from .. import loader, utils
 import os
@@ -16,11 +16,11 @@ class VideoToMP3Mod(loader.Module):
         args = utils.get_args_raw(message)
 
         if not reply or not reply.video:
-            await message.edit("<b>Ответьте на видео для конвертации.</b>")
+            await utils.answer(message, "<b>Ответьте на видео для конвертации.</b>")
             return
 
         video = await reply.download_media()
-        await message.edit("<b>Конвертация видео в аудио...</b>")
+        await utils.answer(message, "<b>Конвертация видео в аудио...</b>")
 
         try:
             audio_file = f"{args}.mp3" if args else "video.mp3"
@@ -29,12 +29,12 @@ class VideoToMP3Mod(loader.Module):
             video_clip.close()
 
             await message.client.send_file(message.chat_id, audio_file, reply_to=reply.id)
-            await message.edit("<b>Конвертация завершена!</b>")
+            await utils.answer(message, "<b>Конвертация завершена!</b>")
 
             os.remove(video)
             os.remove(audio_file)
         except Exception as e:
-            await message.edit(f"<b>Произошла ошибка: {e}</b>")
+            await utils.answer(message, f"<b>Произошла ошибка: {e}</b>")
             if os.path.exists(video):
                 os.remove(video)
             if os.path.exists(audio_file):
