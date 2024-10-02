@@ -1,5 +1,5 @@
-# meta developer: @shiningwhore
-# author: Не знаю, чья идея. Если есть претензии ко мне — канал из meta developer к вашим услугам.
+# meta developer: @htmIpage
+# author: Не знаю, чья идея. Если есть претензии ко мне — профиль из meta developer к вашим услугам.
 
 from .. import loader, utils
 import telethon
@@ -17,5 +17,6 @@ class WalletCheckMod(loader.Module):
             response = await conv.get_response()
 
             await sent_message.delete()
+            await response.delete()
 
-        await message.edit(response.text)
+        await utils.answer(message, response.text)
