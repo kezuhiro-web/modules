@@ -7,3 +7,4 @@ WalletCheck
 LinkShortener
 Neofetch
 SimpleSpeedtest
+GPT4oM
