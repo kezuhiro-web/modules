@@ -1,7 +1,8 @@
 # meta developer: @htmIpage
 
 import requests
-import tempfile
+import io
+import os
 from .. import loader, utils
 
 class GPT4oMMod(loader.Module):
@@ -12,7 +13,7 @@ class GPT4oMMod(loader.Module):
         self.client = client
 
     async def gptcmd(self, message):
-        """Спросить нейросеть (GPT-4o mini)"""
+        """Спросить нейросет (GPT-4o mini)"""
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, "<b>Укажите вопрос!</b>")
@@ -37,10 +38,10 @@ class GPT4oMMod(loader.Module):
             response.raise_for_status()
             data = response.json()
             answer = data.get("answer", "Ответ не получен.")
-            await utils.answer(message, f"<b>Запрос:</b>\n<code>{args}</code>\n\n<b>Ответ GPT-4o mini:</b>\n<code>{answer}</code>")
+            await utils.answer(message, f"<b>Запрос:</b>\n<code>{args}</code>\n\n<b>Ответ:</b>\n<code>{answer}</code>")
 
         except requests.exceptions.RequestException as e:
-            await utils.answer(message, f"<b>Произошла ошибка при запросе:</b> {str(e)}")
+            await utils.answer(message, f"<b>Произошла ошибка при запросе:</b>\n<code>{str(e)}</code>")
     
     async def imgcmd(self, message):
         """Сгенерировать изображение (Kandinsky)"""
@@ -77,14 +78,11 @@ class GPT4oMMod(loader.Module):
                     try:
                         img_response = requests.get(image_url, stream=True)
                         img_response.raise_for_status()
+                        
+                        img_data = io.BytesIO(img_response.content)
+                        img_data.name = 'generated_image.png'
 
-                        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-                            for chunk in img_response.iter_content(1024):
-                                temp_file.write(chunk)
-
-                            temp_file_path = temp_file.name
-
-                        await self.client.send_file(message.chat_id, temp_file_path, caption=f"<b>Сгенерированное изображение по запросу:</b>\n<code>{args}</code>")
+                        await self.client.send_file(message.chat_id, img_data, caption=f"<b>Сгенерированное изображение по запросу:</b>\n<code>{args}</code>")
                     
                     except requests.exceptions.RequestException as img_error:
                         await utils.answer(message, f"<b>Ошибка при загрузке изображения:</b>\n<code>{str(img_error)}</code>")
@@ -93,4 +91,4 @@ class GPT4oMMod(loader.Module):
                 await utils.answer(message, "<b>Изображения не были сгенерированы.</b>")
 
         except requests.exceptions.RequestException as e:
-            await utils.answer(message, f"<b>Произошла ошибка при генерации изображения:</b> {str(e)}")
+            await utils.answer(message, f"<b>Произошла ошибка при генерации изображения:</b>\n<code>{str(e)}</code>")
