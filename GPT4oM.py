@@ -13,7 +13,7 @@ class GPT4oMMod(loader.Module):
         self.client = client
 
     async def gptcmd(self, message):
-        """Спросить нейросет (GPT-4o mini)"""
+        """Спросить нейросеть (GPT-4o mini)"""
         args = utils.get_args_raw(message)
         if not args:
             await utils.answer(message, "<b>Укажите вопрос!</b>")
