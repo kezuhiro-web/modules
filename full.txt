@@ -9,3 +9,4 @@ Neofetch
 SimpleSpeedtest
 GPT4oM
 YamiFarm
+VoiceToText
