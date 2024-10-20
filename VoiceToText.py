@@ -69,7 +69,7 @@ class VoiceToTextMod(loader.Module):
         if not reply or not (reply.voice or reply.video_note):
             await waiting_message.delete()
             if not auto:
-                await utils.answer(message, self.strings["vtt_invalid"])
+                await message.respond(self.strings["vtt_invalid"])
             return
 
         media_file = await reply.download_media()
