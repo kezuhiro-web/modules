@@ -8,5 +8,4 @@ LinkShortener
 Neofetch
 SimpleSpeedtest
 GPT
-YamiFarm
 VoiceToText
