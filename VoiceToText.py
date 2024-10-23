@@ -31,8 +31,6 @@ class VoiceToTextMod(loader.Module):
 
     async def client_ready(self, client, db):
         self.db = db
-        if not self.db.get(self.name, "auto_enabled", {}):
-            self.db.set(self.name, "auto_enabled", {})
 
     @loader.command(
         ru_doc="Распознает текст из голосового или видеосообщения.",
@@ -41,26 +39,7 @@ class VoiceToTextMod(loader.Module):
         """Recognizes text from voice or video messages."""
         await self._process_voice_to_text(message)
 
-    @loader.command(
-        ru_doc="Включает/выключает автораспознавание голосовых сообщений.",
-    )
-    async def avttcmd(self, message):
-        """Enables/disables automatic recognition of voice messages."""
-        chat_id = str(message.chat_id)
-        auto_enabled_chats = self.db.get(self.strings["name"], "auto_enabled", {})
-
-        auto_enabled_chats[chat_id] = not auto_enabled_chats.get(chat_id, False)
-        self.db.set(self.strings["name"], "auto_enabled", auto_enabled_chats)
-
-        status_text = self.strings["auto_vtt_on"] if auto_enabled_chats[chat_id] else self.strings["auto_vtt_off"]
-        await utils.answer(message, status_text)
-
     async def _process_voice_to_text(self, message, auto=False):
-        auto_enabled_chats = self.db.get(self.name, "auto_enabled", {})
-
-        if auto and not auto_enabled_chats.get(str(message.chat_id), False):
-            return
-
         waiting_message = await utils.answer(
             message, self.strings["process_text"], reply_to=message.id if auto else None
         )
@@ -91,10 +70,3 @@ class VoiceToTextMod(loader.Module):
             await waiting_message.delete()
             os.remove(media_file)
             os.remove(wav_file)
-
-    async def watcher(self, message):
-        auto_enabled_chats = self.db.get(self.name, "auto_enabled", {})
-
-        if message.voice or message.video_note:
-            if auto_enabled_chats.get(str(message.chat_id), False):
-                await self._process_voice_to_text(message, auto=True)
