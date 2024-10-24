@@ -1,11 +1,7 @@
-GoogleSearcher
-VideoToMP3
-Brainfuck
 Searcher
 VideoDownloader
 WalletCheck
 LinkShortener
 Neofetch
-SimpleSpeedtest
 GPT
 VoiceToText
