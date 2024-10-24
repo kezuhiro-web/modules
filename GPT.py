@@ -1,4 +1,4 @@
-# meta developer: @htmIpage
+# meta developer: @y9_d0lbaeb
 
 import requests
 import io
