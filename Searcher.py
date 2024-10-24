@@ -1,4 +1,4 @@
-# meta developer: @htmIpage
+# meta developer: @y9_d0lbaeb
 # author: Не знаю, чья идея. Если есть претензии ко мне — профиль из meta developer к вашим услугам.
 
 from .. import loader, utils
