@@ -1,4 +1,4 @@
-# meta developer: @htmIpage
+# meta developer: @y9_d0lbaeb
 
 from .. import loader, utils
 import os
@@ -9,9 +9,6 @@ from pydub import AudioSegment
 class VoiceToTextMod(loader.Module):
     """Voice and video messages to text translation with auto-recognition"""
     strings = {
-        "name": "VoiceToText",
-        "auto_vtt_on": "🔄 <b>Automatic recognition of voice messages is enabled.</b>",
-        "auto_vtt_off": "🔄 <b>Automatic recognition of voice messages is disabled.</b>",
         "process_text": "⏳ <b>Recognizing the message text...</b>",
         "vtt_success": "💬 <b>Recognized text:</b>\n<code>{}</code>",
         "vtt_failure": "🚫 <b>Failed to recognize the message.</b>",
@@ -20,17 +17,12 @@ class VoiceToTextMod(loader.Module):
     }
 
     strings_ru = {
-        "auto_vtt_on": "🔄 <b>Автораспознавание голосовых сообщений включено.</b>",
-        "auto_vtt_off": "🔄 <b>Автораспознавание голосовых сообщений выключено.</b>",
         "process_text": "⏳ <b>Распознаю текст сообщения...</b>",
         "vtt_success": "💬 <b>Распознанный текст:</b>\n<code>{}</code>",
         "vtt_failure": "🚫 <b>Не удалось распознать сообщение.</b>",
         "vtt_request_error": "🚫 <b>Ошибка при обращении к сервису распознавания:</b>\n<code>{}</code>",
         "vtt_invalid": "🚫 <b>Пожалуйста, ответьте на голосовое или видеосообщение командой</b> <code>.vtt</code>"
     }
-
-    async def client_ready(self, client, db):
-        self.db = db
 
     @loader.command(
         ru_doc="Распознает текст из голосового или видеосообщения.",
