@@ -49,8 +49,8 @@ class LinkShortenerMod(loader.Module):
             response = requests.get(f"http://tinyurl.com/api-create.php?url={args}")
             if response.status_code == 200:
                 short_url = response.text
-                await utils.answer(message, f'{self.strings["shortened_link"]} {short_url}')
+                await utils.answer(message, f'''{self.strings["shortened_link"]} {short_url}''')
             else:
-                await utils.answer(message, self.strings["shortenin_error"])
+                await utils.answer(message, self.strings["shortening_error"])
         except Exception as e:
-            await utils.answer(message, f'{self.strings["error"]}\n<code>{str(e)}</code>')
+            await utils.answer(message, f'''{self.strings["error"]}\n<code>{str(e)}</code>''')
