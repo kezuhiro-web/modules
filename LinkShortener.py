@@ -1,4 +1,4 @@
-# meta developer: @htmIpage
+# meta developer: @y9_d0lbaeb
 # author: Не знаю, чья идея. Если есть претензии ко мне — профиль из meta developer к вашим услугам.
 
 import requests
@@ -7,33 +7,50 @@ from .. import loader, utils
 @loader.tds
 class LinkShortenerMod(loader.Module):
     """Модуль для сокращения ссылок через TinyURL"""
-    strings = {"name": "LinkShortener"}
+    strings = {
+        "name": "LinkShortener",
+        "no_link": "<b>Please provide a link to shorten or reply to a message with a link.</b>",
+        "invalid_link": "<b>Invalid link. It must start with http:// or https://</b>",
+        "shortened_link": "<b>Shortened link:</b>",
+        "shortening_error": "<b>Error shortening link.</b>",
+        "error": "<b>An error occurred:</b>",
+    }
+
+    strings_ru = {
+        "no_link": "<b>Пожалуйста, укажите ссылку для сокращения или ответьте на сообщение с ссылкой.</b>",
+        "invalid_link": "<b>Неверная ссылка. Она должна начинаться с http:// или https://</b>",
+        "shortened_link": "<b>Сокращенная ссылка:</b>",
+        "shortening_error": "<b>Ошибка при сокращении ссылки.</b>",
+        "error": "<b>Произошла ошибка:</b>",
+    }
 
     async def client_ready(self, client, db):
         self.client = client
 
-    async def slinkcmd(self, message):
-        """Сокращает ссылку. Использование: .slink <link or reply>"""
-        
+    @loader.command(
+        ru_doc="Сокращает ссылку. Использование: .slink <link or reply>"
+    )
+    async def slink(self, message):
+        """Shortens a link. Usage: .slink <link or reply>"""
         args = utils.get_args_raw(message)
         if not args and message.is_reply:
             reply_message = await message.get_reply_message()
             args = reply_message.raw_text
         
         if not args:
-            await utils.answer(message, "<b>Пожалуйста, укажите ссылку для сокращения или ответьте на сообщение с ссылкой.</b>")
+            await utils.answer(message, self.strings["no_link"])
             return
         
         if not args.startswith("http"):
-            await utils.asnwer(message, "<b>Неверная ссылка. Она должна начинаться с http или https.</b>")
+            await utils.asnwer(message, self.strings["invalid_link"])
             return
 
         try:
             response = requests.get(f"http://tinyurl.com/api-create.php?url={args}")
             if response.status_code == 200:
                 short_url = response.text
-                await utils.answer(message, f"<b>Сокращенная ссылка:</b> {short_url}")
+                await utils.answer(message, f"{self.strings["shortened_link"]} {short_url}")
             else:
-                await utils.answer(message, "<b>Ошибка при сокращении ссылки.</b>")
+                await utils.answer(message, self.strings["shortenin_error"])
         except Exception as e:
-            await utils.answer(message, f"<b>Произошла ошибка:</b> {str(e)}")
+            await utils.answer(message, f"{self.strings["error"]}\n<code>{str(e)}</code>")
