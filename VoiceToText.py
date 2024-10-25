@@ -9,6 +9,7 @@ from pydub import AudioSegment
 class VoiceToTextMod(loader.Module):
     """Voice and video messages to text translation with auto-recognition"""
     strings = {
+        "name": "VoiceToText",
         "process_text": "⏳ <b>Recognizing the message text...</b>",
         "vtt_success": "💬 <b>Recognized text:</b>\n<code>{}</code>",
         "vtt_failure": "🚫 <b>Failed to recognize the message.</b>",
