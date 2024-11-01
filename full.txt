@@ -1,5 +1,4 @@
 Searcher
-VideoDownloader
 WalletCheck
 LinkShortener
 Neofetch
