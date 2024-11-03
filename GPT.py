@@ -38,7 +38,7 @@ class GPTMod(loader.Module):
             response.raise_for_status()
             data = response.json()
             answer = data.get("answer", "Ответ не получен.")
-            await utils.answer(message, f"💬 <b>Запрос:</b>\n<code>{args}</code>\n\n💻 <b>Ответ:</b>\n<code>{answer}</code>")
+            await utils.answer(message, f"💬 **Запрос:**\n{args}\n\n💻 **Ответ:**\n{answer}", parse_mode='markdown')
 
         except requests.exceptions.RequestException as e:
             await utils.answer(message, f"🚫 <b>Произошла ошибка при запросе:</b>\n<code>{str(e)}</code>")
