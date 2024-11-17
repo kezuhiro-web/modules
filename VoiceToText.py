@@ -62,6 +62,6 @@ class VoiceToTextMod(loader.Module):
                 except sr.RequestError as e:
                     await reply.reply(self.strings["vtt_request_error"].format(e))
         finally:
-            await waiting_message.edit(self.strings["vtt_successful"])
             os.remove(media_file)
             os.remove(wav_file)
+            await waiting_message.edit(self.strings["vtt_successful"])
