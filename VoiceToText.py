@@ -14,7 +14,8 @@ class VoiceToTextMod(loader.Module):
         "vtt_success": "💬 <b>Recognized text:</b>\n<code>{}</code>",
         "vtt_failure": "🚫 <b>Failed to recognize the message.</b>",
         "vtt_request_error": "🚫 <b>Error when contacting the recognition service:</b>\n<code>{}</code>",
-        "vtt_invalid": "🚫 <b>Please reply to a voice or video message with the command</b> <code>.vtt</code>"
+        "vtt_invalid": "🚫 <b>Please reply to a voice or video message with the command</b> <code>.vtt</code>",
+        "vtt_successful": "✅ <b>Text recognized successfully</b>",
     }
 
     strings_ru = {
@@ -22,7 +23,8 @@ class VoiceToTextMod(loader.Module):
         "vtt_success": "💬 <b>Распознанный текст:</b>\n<code>{}</code>",
         "vtt_failure": "🚫 <b>Не удалось распознать сообщение.</b>",
         "vtt_request_error": "🚫 <b>Ошибка при обращении к сервису распознавания:</b>\n<code>{}</code>",
-        "vtt_invalid": "🚫 <b>Пожалуйста, ответьте на голосовое или видеосообщение командой</b> <code>.vtt</code>"
+        "vtt_invalid": "🚫 <b>Пожалуйста, ответьте на голосовое или видеосообщение командой</b> <code>.vtt</code>",
+        "vtt_successful": "✅ <b>Текст успешно распознан</b>",
     }
 
     @loader.command(
@@ -60,6 +62,6 @@ class VoiceToTextMod(loader.Module):
                 except sr.RequestError as e:
                     await reply.reply(self.strings["vtt_request_error"].format(e))
         finally:
-            await waiting_message.delete()
+            await waiting_message.edit(self.strings["vtt_successful"])
             os.remove(media_file)
             os.remove(wav_file)
