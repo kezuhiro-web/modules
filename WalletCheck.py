@@ -15,11 +15,10 @@ from .. import loader, utils
 import telethon
 
 class WalletCheckMod(loader.Module):
-    """Модуль для взаимодействия с @send"""
     strings = {'name': 'WalletCheck'}
 
     async def walletcmd(self, message: telethon.tl.types.Message):
-        """Отправляет команду /wallet в @send"""
+        """Отправляет ваш баланс в @send"""
         bot_username = "@send"
 
         async with message.client.conversation(bot_username) as conv:
