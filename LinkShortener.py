@@ -9,7 +9,7 @@
 # |_|  |_|  \___/  |___/  |___/
 #
 
-# meta developer: @biokezu
+# meta developer: @dummykezu
 
 import requests
 from .. import loader, utils
