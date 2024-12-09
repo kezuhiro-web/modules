@@ -9,7 +9,7 @@
 # |_|  |_|  \___/  |___/  |___/
 #
 
-# meta developer: @biokezu
+# meta developer: @dummykezu
 
 from .. import loader, utils
 import telethon
