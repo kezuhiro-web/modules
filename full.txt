@@ -5,3 +5,4 @@ Neofetch
 GPT
 VoiceToText
 VideoToMP3
+NewYearCD
