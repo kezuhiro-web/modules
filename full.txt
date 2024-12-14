@@ -6,3 +6,4 @@ GPT
 VoiceToText
 VideoToMP3
 NewYearCD
+RandomAnimePic
