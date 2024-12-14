@@ -2,7 +2,6 @@ Searcher
 WalletCheck
 LinkShortener
 Neofetch
-GPT
 VoiceToText
 VideoToMP3
 NewYearCD
