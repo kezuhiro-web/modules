@@ -22,14 +22,14 @@ class VideoToMP3Mod(loader.Module):
         "name": "📷 VideoToMP3",
         "not_reply": "💢 <b>Reply to video for conversion.</b>",
         "conv_msg": "🔄 <b>Converting video to audio...</b>",
-        "conv_successful": "🟢 <b>Conversion complete!</b>",
-        "error": "🔴 <b>An error occured:</b>\n<pre><code class='language-python'>{}</code></pre>",
+        "conv_successful": "✅ <b>Conversion complete!</b>",
+        "error": "❎ <b>An error occured:</b>\n<pre><code class='language-python'>{}</code></pre>",
     }
     strings_ru = {
         "not_reply": "💢 <b>Ответьте на видео для конвертации.</b>",
         "conv_msg": "🔄 <b>Конвертация видео в аудио...</b>",
-        "conv_successful": "🟢 <b>Конвертация завершена!</b>",
-        "error": "🔴 <b>Произошла ошибка:</b>\n<pre><code class='language-python'>{}</code></pre>",
+        "conv_successful": "✅ <b>Конвертация завершена!</b>",
+        "error": "❎ <b>Произошла ошибка:</b>\n<pre><code class='language-python'>{}</code></pre>",
     }
     
     @loader.command(ru_doc=" <reply_to_video> [имя_файла] - Конвертировать видео в аудио")
