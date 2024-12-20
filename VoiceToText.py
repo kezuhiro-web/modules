@@ -45,11 +45,11 @@ class VoiceToTextMod(loader.Module):
         """Recognizes text from voice or video messages."""
         await self._process_voice_to_text(message)
 
-    async def _process_voice_to_text(self, message, auto=False):
+    async def _process_voice_to_text(self, message):
         waiting_message = await utils.answer(
-            message, self.strings["process_text"], reply_to=message.id if auto else None
+            message, self.strings["process_text"], reply_to=message.id
         )
-        reply = message if auto else await message.get_reply_message()
+        reply = await message.get_reply_message()
 
         if not reply or not (reply.voice or reply.video_note):
             await waiting_message.delete()
