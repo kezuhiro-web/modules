@@ -68,11 +68,13 @@ class VoiceToTextMod(loader.Module):
                 try:
                     text = recognizer.recognize_google(audio_data, language='ru-RU')
                     await reply.reply(self.strings["vtt_success"].format(text))
+                    await waiting_message.edit(self.strings["vtt_successful"])
                 except sr.UnknownValueError:
                     await reply.reply(self.strings["vtt_failure"])
                 except sr.RequestError as e:
                     await reply.reply(self.strings["vtt_request_error"].format(e))
-        finally:
-            os.remove(media_file)
-            os.remove(wav_file)
-            await waiting_message.edit(self.strings["vtt_successful"])
+        except Exception as exception:
+            await waiting_message.delete()
+
+        os.remove(media_file)
+        os.remove(wav_file)
