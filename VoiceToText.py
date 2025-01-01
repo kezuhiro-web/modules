@@ -18,7 +18,6 @@ from pydub import AudioSegment
 
 @loader.tds
 class VoiceToTextMod(loader.Module):
-    """Voice and video messages to text translation with auto-recognition"""
     strings = {
         "name": "VoiceToText",
         "process_text": "⏳ <b>Recognizing the message text...</b>",
