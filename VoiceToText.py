@@ -70,11 +70,11 @@ class VoiceToTextMod(loader.Module):
                     await reply.reply(self.strings["vtt_success"].format(text))
                     await waiting_message.edit(self.strings["vtt_successful"])
                 except sr.UnknownValueError:
+                    await waiting_message.delete()
                     await reply.reply(self.strings["vtt_failure"])
                 except sr.RequestError as e:
+                    await waiting_message.delete()
                     await reply.reply(self.strings["vtt_request_error"].format(e))
-        except Exception as exception:
-            await waiting_message.delete()
-
-        os.remove(media_file)
-        os.remove(wav_file)
+        finally:
+            os.remove(media_file)
+            os.remove(wav_file)
