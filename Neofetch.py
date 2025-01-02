@@ -17,18 +17,29 @@ from .. import loader, utils
 
 @loader.tds
 class NeofetchMod(loader.Module):
-    strings = {"name": "Neofetch"}
+    strings = {
+        "name": "Neofetch",
+        "not_installed": "Please, install <i>Neofetch</i>",
+    }
 
+    strings_ru = {
+        "not_installed": "Пожалуйста, установите <i>Neofetch</i>",
+    }
+
+    strings_ua = {
+        "not_installed": "Будь ласка, встановіть <i>Neofetch</i>",
+    }
+
+    @loader.command(
+        ru_doc="- запустить команду neofetch",
+        ua_doc="- запустити команду neofetch",
+    )
     async def neofetchcmd(self, message):
-        """Запустить команду neofetch"""
+        """- run neofetch command"""
         try:
             result = subprocess.run(["neofetch", "--stdout"], capture_output=True, text=True)
             output = result.stdout
-
-            if result.returncode != 0:
-                await utils.answer(message, f"<b>Ошибка выполнения команды neofetch:</b>\n{result.stderr}")
-                return
-
             await utils.answer(message, f"<pre>{utils.escape_html(output)}</pre>")
-        except Exception:
-            await utils.answer(message, f"<b>Ошибка:</b>\n<pre>{traceback.format_exc()}</pre>")
+            
+        except FileNotFoundError:
+            await utils.answer(message, self.strings("not_installed"))
