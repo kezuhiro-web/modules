@@ -19,17 +19,17 @@ from moviepy import VideoFileClip
 @loader.tds
 class VideoToMP3Mod(loader.Module):
     strings = {
-        "name": "📷 VideoToMP3",
-        "not_reply": "💢 <b>Reply to video for conversion.</b>",
-        "conv_msg": "🔄 <b>Converting video to audio...</b>",
-        "conv_successful": "✅ <b>Conversion complete!</b>",
-        "error": "❎ <b>An error occured:</b>\n<pre><code class='language-python'>{}</code></pre>",
+        "name": "VideoToMP3",
+        "not_reply": "<emoji document_id=5116275208906343429>‼️</emoji> <b>Reply to video for conversion.</b>",
+        "conv_msg": "<emoji document_id=4911241630633165627>✨</emoji> <b>Converting video to audio...</b>",
+        "conv_successful": "<emoji document_id=4916036072560919511>✅</emoji> <b>Conversion complete!</b>",
+        "error": "<emoji document_id=4918014360267260850>⛔️</emoji> <b>An error occured:</b>\n<pre><code class='language-python'>{}</code></pre>",
     }
     strings_ru = {
-        "not_reply": "💢 <b>Ответьте на видео для конвертации.</b>",
-        "conv_msg": "🔄 <b>Конвертация видео в аудио...</b>",
-        "conv_successful": "✅ <b>Конвертация завершена!</b>",
-        "error": "❎ <b>Произошла ошибка:</b>\n<pre><code class='language-python'>{}</code></pre>",
+        "not_reply": "<emoji document_id=5116275208906343429>‼️</emoji> <b>Ответьте на видео для конвертации.</b>",
+        "conv_msg": "<emoji document_id=4911241630633165627>✨</emoji> <b>Конвертация видео в аудио...</b>",
+        "conv_successful": "<emoji document_id=4916036072560919511>✅</emoji> <b>Конвертация завершена!</b>",
+        "error": "<emoji document_id=4918014360267260850>⛔️</emoji> <b>Произошла ошибка:</b>\n<pre><code class='language-python'>{}</code></pre>",
     }
     
     @loader.command(ru_doc=" <reply_to_video> [имя_файла] - Конвертировать видео в аудио")
