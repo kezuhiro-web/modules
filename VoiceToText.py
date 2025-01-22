@@ -45,15 +45,15 @@ class VoiceToTextMod(loader.Module):
         await self._process_voice_to_text(message)
 
     async def _process_voice_to_text(self, message):
-        waiting_message = await utils.answer(
-            message, self.strings["process_text"], reply_to=message.id
-        )
         reply = await message.get_reply_message()
 
         if not reply or not (reply.voice or reply.video_note):
-            await waiting_message.delete()
             await message.respond(self.strings["vtt_invalid"])
             return
+
+        waiting_message = await utils.answer(
+            message, self.strings["process_text"], reply_to=message.id
+        )
 
         media_file = await reply.download_media()
         wav_file = media_file.replace('.mp4', '.wav') if reply.video_note else media_file.replace('.oga', '.wav')
