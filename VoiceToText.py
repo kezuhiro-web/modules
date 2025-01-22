@@ -20,28 +20,28 @@ from pydub import AudioSegment
 class VoiceToTextMod(loader.Module):
     strings = {
         "name": "VoiceToText",
-        "process_text": "⏳ <b>Recognizing the message text...</b>",
-        "vtt_success": "💬 <b>Recognized text:</b>\n<code>{}</code>",
-        "vtt_failure": "🚫 <b>Failed to recognize the message.</b>",
-        "vtt_request_error": "🚫 <b>Error when contacting the recognition service:</b>\n<code>{}</code>",
-        "vtt_invalid": "🚫 <b>Please reply to a voice or video message with the command</b> <code>.vtt</code>",
-        "vtt_successful": "✅ <b>Text recognized successfully</b>",
+        "process_text": "<emoji document_id=4911241630633165627>✨</emoji> <b>Recognizing the message text...</b>",
+        "vtt_success": "<emoji document_id=5116110535565247270>🔥</emoji> <b>Recognized text:</b>\n<code>{}</code>",
+        "vtt_failure": "<emoji document_id=5116151848855667552>🚫</emoji> <b>Failed to recognize the message.</b>",
+        "vtt_request_error": "<emoji document_id=5116151848855667552>🚫</emoji> <b>Error when contacting the recognition service:</b>\n<code>{}</code>",
+        "vtt_invalid": "<emoji document_id=5116151848855667552>🚫</emoji> <b>Please reply to a voice or video message with the command</b> <code>.vtt</code>",
+        "vtt_successful": "<emoji document_id=4916036072560919511>✅</emoji> <b>Text recognized successfully</b>",
     }
 
     strings_ru = {
-        "process_text": "⏳ <b>Распознаю текст сообщения...</b>",
-        "vtt_success": "💬 <b>Распознанный текст:</b>\n<code>{}</code>",
-        "vtt_failure": "🚫 <b>Не удалось распознать сообщение.</b>",
-        "vtt_request_error": "🚫 <b>Ошибка при обращении к сервису распознавания:</b>\n<code>{}</code>",
-        "vtt_invalid": "🚫 <b>Пожалуйста, ответьте на голосовое или видеосообщение командой</b> <code>.vtt</code>",
-        "vtt_successful": "✅ <b>Текст успешно распознан</b>",
+        "process_text": "<emoji document_id=4911241630633165627>✨</emoji> <b>Распознаю текст сообщения...</b>",
+        "vtt_success": "<emoji document_id=5116110535565247270>🔥</emoji> <b>Распознанный текст:</b>\n<code>{}</code>",
+        "vtt_failure": "<emoji document_id=5116151848855667552>🚫</emoji> <b>Не удалось распознать сообщение.</b>",
+        "vtt_request_error": "<emoji document_id=5116151848855667552>🚫</emoji> <b>Ошибка при обращении к сервису распознавания:</b>\n<code>{}</code>",
+        "vtt_invalid": "<emoji document_id=5116151848855667552>🚫</emoji> <b>Пожалуйста, ответьте на голосовое или видеосообщение командой</b> <code>.vtt</code>",
+        "vtt_successful": "<emoji document_id=4916036072560919511>✅</emoji> <b>Текст успешно распознан</b>",
     }
 
     @loader.command(
-        ru_doc="Распознает текст из голосового или видеосообщения.",
+        ru_doc="- распознает текст из голосового или видеосообщения.",
     )
     async def vttcmd(self, message):
-        """Recognizes text from voice or video messages."""
+        """- recognizes text from voice or video messages."""
         await self._process_voice_to_text(message)
 
     async def _process_voice_to_text(self, message):
@@ -52,8 +52,7 @@ class VoiceToTextMod(loader.Module):
 
         if not reply or not (reply.voice or reply.video_note):
             await waiting_message.delete()
-            if not auto:
-                await message.respond(self.strings["vtt_invalid"])
+            await message.respond(self.strings["vtt_invalid"])
             return
 
         media_file = await reply.download_media()
