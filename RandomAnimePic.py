@@ -1,4 +1,4 @@
-# _  __  ___   ____  _   _ 
+#  _  __  ___   ____  _   _ 
 # | |/ / | __| |_  / | | | |
 # | ' <  | _|   / /  | |_| |
 # |_|\_\ |___| /___|  \___/
@@ -42,12 +42,13 @@ class RandomAnimePicMod(loader.Module):
       res = requests.get("https://api.nekosia.cat/api/v1/images/cute?count=1")
       res.raise_for_status()
       data = res.json()
+      image_url = data['image']['original']['url']
       
       await asyncio.sleep(2)
       
       await msg.delete()
       
-      await self._client.send_file(message.peer_id, data['image']['original']['url'], caption=self.strings("img"), reply=message.reply_to_msg_id)
+      await self._client.send_file(message.peer_id, image_url, caption=self.strings("img"), reply=message.reply_to_msg_id)
     
     except Exception:
       msg = await utils.answer(message, self.strings("error"))
