@@ -30,14 +30,14 @@ class BirthdayGreetingMod(loader.Module):
     }
 
     @loader.command(
-        ru_doc="[имя] - поздравить человека с Днём Рождения"
+        ru_doc="[имя (необязательно)] - поздравить человека с Днём Рождения"
     )
     async def bdgreetcmd(self, message):
-        """[name] - congratulate a person on Birthday"""
+        """[name (optional)] - congratulate a person on Birthday"""
 
         name = utils.get_args_raw(message)
         prompt = f"""Сгенерируй текст для поздравления с Днем рождения человека под именем {name}. Только текст для поздравления, один вариант."""
-        dictToSend = {"model": "gemini-flash", "request": {"messages": [{"role": "user", "content": prompt}]}}
+        dictToSend = {"model": "gemini", "request": {"messages": [{"role": "user", "content": prompt}]}}
 
         try:
             waiting_msg = await utils.answer(message, self.strings('wait'))
