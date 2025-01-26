@@ -45,7 +45,6 @@ class BirthdayGreetingMod(loader.Module):
             res = requests.post('http://api.onlysq.ru/ai/v2', json=dictToSend)
             response = res.json()
 
-            await waiting_msg.delete()
             await utils.answer(message, response['answer'])
 
         except Exception:
