@@ -6,3 +6,4 @@ VoiceToText
 VideoToMP3
 RandomAnimePic
 UnbanAll
+BirthdayGreeting
