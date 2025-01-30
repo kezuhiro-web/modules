@@ -10,7 +10,7 @@
 #  / /  / / /_/ / /_/ /___/ / 
 # /_/  /_/\____/_____//____/
 #
-# meta developer: @aki_user
+# meta developer: @aki_modules
 
 from .. import loader, utils
 from telethon.tl.types import ChatBannedRights

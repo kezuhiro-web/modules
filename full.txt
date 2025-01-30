@@ -7,3 +7,4 @@ VideoToMP3
 RandomAnimePic
 UnbanAll
 BirthdayGreeting
+Neuro
