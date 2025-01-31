@@ -39,7 +39,7 @@ class NeuroMod(loader.Module):
                 "model",
                 "gemini",
                 "Choose model",
-                validator=loader.validators.Choice(["gpt-3.5-turbo", "gemini", "blackbox", "claude-3-haiku", "copilot", "gpt-4o-mini"]),
+                validator=loader.validators.Choice(["gpt-3.5-turbo", "gemini", "claude-3.5-sonnet", "claude-3-haiku", "copilot", "gpt-4o-mini", "searchgpt"]),
             ),
         )
 
