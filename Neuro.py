@@ -55,14 +55,13 @@ class NeuroMod(loader.Module):
             await utils.answer(message, self.strings("no_prompt"))
             return
 
+        await utils.answer(message, self.strings("wait"))
+
         dictToSend = {"model": self.config['model'], "request": {"messages": [{"role": "user", "content": question}]}}
         res = req.post('http://api.onlysq.ru/ai/v2', json=dictToSend)
         response = res.json()
 
         try:
-
-            await utils.answer(message, self.strings("wait"))
-
             await utils.answer(message, self.strings("success").format(question, response['answer']))
 
         except Exception as e:
