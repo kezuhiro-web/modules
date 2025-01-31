@@ -24,13 +24,13 @@ class NeuroMod(loader.Module):
         "no_prompt": "<emoji document_id=5873121512445187130>❓</emoji> <b>Where your prompt?</b>",
         "error": "<emoji document_id=5872829476143894491>🚫</emoji> <b>This error occured:</b>\n{}",
         "wait": "<emoji document_id=5791714113906282664>⚡️</emoji> <b>Wait, answer to your prompt on generation...</b>",
-        "success": "<emoji document_id=5776375003280838798>✅</emoji> <b>Successful!</b>\n<b>Your prompt:</b>\n<code>{}</code>\n\n<b>Neuro's answer:</b>\n<code>{}</code>",
+        "success": "<emoji document_id=5776375003280838798>✅</emoji> <b>Successful!</b>\n\n<emoji document_id=5879770735999717115>👤</emoji> <b>Your prompt:</b>\n<code>{}</code>\n\n<emoji document_id=5931415565955503486>🤖</emoji> <b>Neuro's answer:</b>\n<code>{}</code>",
     }
     strings_ru = {
         "no_prompt": "<emoji document_id=5873121512445187130>❓</emoji> <b>Где твой запрос?</b>",
         "error": "<emoji document_id=5872829476143894491>🚫</emoji> <b>Произошла эта ошибка:</b>\n{}",
         "wait": "<emoji document_id=5791714113906282664>⚡️</emoji> <b>Подожди, ответ на твой вопрос на генерации...</b>",
-        "success": "<emoji document_id=5776375003280838798>✅</emoji> <b>Успешно!</b>\n<b>Твой вопрос:</b>\n<code>{}</code>\n\n<b>Ответ Neuro:</b>\n<code>{}</code>",
+        "success": "<emoji document_id=5776375003280838798>✅</emoji> <b>Успешно!</b>\n\n<b>Твой вопрос:<emoji document_id=5879770735999717115>👤</emoji> </b>\n<code>{}</code>\n\n<emoji document_id=5931415565955503486>🤖</emoji> <b>Ответ Neuro:</b>\n<code>{}</code>",
     }
 
     def __init__(self):
