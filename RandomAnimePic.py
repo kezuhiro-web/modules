@@ -20,13 +20,13 @@ from .. import loader, utils
 class RandomAnimePicMod(loader.Module):
   strings = {
     "name": "RandomAnimePic",
-    "img": "<emoji document_id=4916036072560919511>✅</emoji> <b>Your anime pic</b>",
+    "img": "<emoji document_id=4916036072560919511>✅</emoji> <b>Your anime pic</b>\n<emoji document_id=5877465816030515018>🔗</emoji> <b>URL:</b> {}",
     "loading": "<emoji document_id=4911241630633165627>✨</emoji> <b>Loading image...</b>",
     "error": "<emoji document_id=5116151848855667552>🚫</emoji> <b>An unexpected error occurred...</b>",
   }
   
   strings_ru = {
-    "img": "<emoji document_id=4916036072560919511>✅</emoji> <b>Ваша аниме-картинка</b>",
+    "img": "<emoji document_id=4916036072560919511>✅</emoji> <b>Ваша аниме-картинка</b>\n<emoji document_id=5877465816030515018>🔗</emoji> <b>Ссылка:</b> {}",
     "loading": "<emoji document_id=4911241630633165627>✨</emoji> <b>Загрузка изображения...</b>",
     "error": "<emoji document_id=5116151848855667552>🚫</emoji> <b>Произошла непредвиденная ошибка...</b>",
   }
@@ -49,7 +49,7 @@ class RandomAnimePicMod(loader.Module):
       
       await msg.delete()
       
-      await self._client.send_file(message.peer_id, image_url, caption=self.strings("img"), reply=message.reply_to_msg_id)
+      await self._client.send_file(message.peer_id, image_url, caption=self.strings("img").format(image_url), reply=message.reply_to_msg_id)
     
     except Exception:
       msg = await utils.answer(message, self.strings("error"))
