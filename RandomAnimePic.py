@@ -37,9 +37,9 @@ class RandomAnimePicMod(loader.Module):
   async def rapiccmd(self, message):
     """- fetch random anime-pic 👀"""
     
+    msg = await utils.answer(message, self.strings("loading"))
+
     try:
-      msg = await utils.answer(message, self.strings("loading"))
-      
       res = requests.get("https://api.nekosia.cat/api/v1/images/cute?count=1")
       res.raise_for_status()
       data = res.json()
@@ -47,9 +47,9 @@ class RandomAnimePicMod(loader.Module):
       
       await asyncio.sleep(2)
       
-      await msg.delete()
-      
       await self._client.send_file(message.peer_id, image_url, caption=self.strings("img").format(image_url), reply=message.reply_to_msg_id)
+      
+      await msg.delete()
     
     except Exception:
       msg = await utils.answer(message, self.strings("error"))
