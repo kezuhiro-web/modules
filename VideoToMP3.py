@@ -49,7 +49,7 @@ class VideoToMP3Mod(loader.Module):
         video = await reply.download_media()
 
         try:
-            audio_file = f"@dummykezu.mp3"
+            audio_file = f"@aki_modules.mp3"
             video_clip = VideoFileClip(video)
             video_clip.audio.write_audiofile(audio_file)
             video_clip.close()
@@ -63,8 +63,8 @@ class VideoToMP3Mod(loader.Module):
                 attributes=[
                     DocumentAttributeAudio(
                         duration=0,
-                        performer="@dummykezu",
-                        title=args if args else "Video",
+                        performer="@aki_modules",
+                        title=args if args else "video.mp3",
                     )
                 ],
                 reply_to=reply.id
