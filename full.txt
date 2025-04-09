@@ -1,4 +1,4 @@
-Searcher
+Search
 WalletCheck
 LinkShortener
 Neofetch
