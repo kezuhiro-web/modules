@@ -1,4 +1,4 @@
 # modules
-Repository with my modules for Hikka/Heroku
-Telegram Channel: @aki_modules
+Repository with my modules for Hikka/Heroku\n
+Telegram Channel: @aki_modules\n
 Thanks for choosing me <3
