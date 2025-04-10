@@ -60,7 +60,7 @@ class SearchMod(loader.Module):
         get_search_engine = self.config["engine"]
 
         try:
-            search_engine = str(get_search_engine())
+            search_engine = str(get_search_engine)
             search_urls = {
                 "google": "https://www.google.com/search?q={query_encoded}",
                 "yandex": "https://yandex.com/search/?text={query_encoded}",
