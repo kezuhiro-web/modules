@@ -62,10 +62,10 @@ class SearchMod(loader.Module):
         try:
             search_engine = str(get_search_engine)
             search_urls = {
-                "google": "https://www.google.com/search?q={query_encoded}",
-                "yandex": "https://yandex.com/search/?text={query_encoded}",
-                "duckduckgo": "https://duckduckgo.com/?q={query_encoded}",
-                "microsoft-bing": "https://www.bing.com/search?q={query_encoded}"
+                "google": f"https://www.google.com/search?q={query_encoded}",
+                "yandex": f"https://yandex.com/search/?text={query_encoded}",
+                "duckduckgo": f"https://duckduckgo.com/?q={query_encoded}",
+                "microsoft-bing": f"https://www.bing.com/search?q={query_encoded}"
             }
 
             if search_engine in search_urls:
