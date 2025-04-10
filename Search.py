@@ -52,7 +52,7 @@ class SearchMod(loader.Module):
         query = utils.get_args_raw(message)
 
         if not query:
-            await utils.answer(message, self.config("no_args"))
+            await utils.answer(message, self.strings("no_args"))
             return
 
         query_encoded = utils.escape_html(query).replace(' ', '+')
