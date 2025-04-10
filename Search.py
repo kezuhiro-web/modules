@@ -49,7 +49,7 @@ class SearchMod(loader.Module):
     async def searchcmd(self, message):
         """[query] - get link to search engine with your query. (You can specify search engine via .cfg Search)"""
 
-        query = utils.get_args_raw(message) or (await message.get_reply_message()).raw_text
+        query = utils.get_args_raw(message)
 
         if not query:
             await utils.answer(message, self.config("no_args"))
