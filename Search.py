@@ -58,17 +58,19 @@ class SearchMod(loader.Module):
         get_search_engine = self.config["engine"]
 
         try:
-            if str(get_search_engine) == "google":
-                await utils.answer(message, self.strings("result").format(f"https://www.google.com/search?q={query_encoded}"))
-            
-            if str(get_search_engine) == "yandex":
-                await utils.answer(message, self.strings("result").format(f"https://yandex.com/search/?text={query_encoded}"))
+            search_engine = str(get_search_engine())
+            search_urls = {
+                "google": "https://www.google.com/search?q={query_encoded}",
+                "yandex": "https://yandex.com/search/?text={query_encoded}",
+                "duckduckgo": "https://duckduckgo.com/?q={query_encoded}",
+                "microsoft-bing": "https://www.bing.com/search?q={query_encoded}"
+            }
 
-            if str(get_search_engine) == "duckduckgo":
-                await utils.answer(message, self.strings("result").format(f"https://duckduckgo.com/?q={query_encoded}"))
-
-            if str(get_search_engine) == "microsoft-bing":
-                await utils.answer(message, self.strings("result").format(f"https://www.bing.com/search?q={query_encoded}"))
+            if search_engine in search_urls:
+                url = search_urls[search_engine]
+                await utils.answer(message, self.strings("result").format(f"{url}"))
+            else:
+                await utils.answer(message, self.strings("error").format(self.strings("unsupported_search_engine")))
 
         except Exception:
             await utils.answer(message, self.strings("error").format(tb.format_exc()))
