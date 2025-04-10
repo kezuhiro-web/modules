@@ -23,12 +23,14 @@ class SearchMod(loader.Module):
         "result": "<emoji document_id=5188217332748527444>🔍</emoji> <b>There is link with your query:</b>\n{}",
         "no_args": "<emoji document_id=5467910507916697142>💢</emoji> <b>You should specify query!</b>",
         "error": "<emoji document_id=5465665476971471368>❌</emoji> <b>An error occured:</b>\n{}",
+        "unsupported_search_engine": "<emoji document_id=5467666648263564704>❓</emoji> <b>Unsupported search engine</b>",
     }
 
     strings_ru = {
         "result": "<emoji document_id=5188217332748527444>🔍</emoji> <b>Вот ссылка с твоим запросом:</b>\n{}",
         "no_args": "<emoji document_id=5467910507916697142>💢</emoji> <b>Ты должен указать запрос!</b>",
         "error": "<emoji document_id=5465665476971471368>❌</emoji> <b>Произошла ошибка:</b>\n{}",
+        "unsupported_search_engine": "<emoji document_id=5467666648263564704>❓</emoji> <b>Поисковая система на поддерживается</b>",
     }
 
     def __init__(self):
